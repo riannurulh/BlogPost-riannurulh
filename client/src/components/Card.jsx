@@ -1,8 +1,8 @@
 function Card(props) {
-    let {item} = props
+    let {item,getDetail} = props
 
     function HandleClick() {
-        console.log('wkwkwkwk');
+        getDetail(item)
     }
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

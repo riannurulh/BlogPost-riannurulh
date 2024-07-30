@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Card from "./components/Card";
 import Navbar from "./components/Navbar";
+import DetailPage from "./pages/DetailPage";
 
 // import Navbar from "./components/navbar";
 
@@ -113,15 +114,25 @@ function HomePage() {
       authorId: 2,
     },
   ]);
+  const [isDetail, setIsDetail] = useState(false);
+  const [seeDetail, setSeeDetail] = useState({});
+
+  function getDetail(post) {
+    setSeeDetail(post);
+    setIsDetail(true);
+  }
+  function hideDetail() {
+    setIsDetail(false);
+  }
   return (
     <div className="">
       <Navbar />
 
       {/* bagian card */}
-
+      {isDetail && <DetailPage seeDetail={seeDetail} hideDetail={hideDetail}/>}
       <div className="mt-5 max-w-screen-xl flex gap-4 flex-wrap items-center justify-center mx-auto p-4">
         {post.map((item) => {
-          return <Card key={item.id} item={item} />;
+          return <Card key={item.id} item={item} getDetail={getDetail}/>;
         })}
       </div>
     </div>

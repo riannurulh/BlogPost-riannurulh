@@ -7,7 +7,7 @@ import DetailPage from './pages/DetailPage.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <HomePage /> */}
-    <DetailPage/>
+    <HomePage />
+    {/* <DetailPage/> */}
   </React.StrictMode>,
 )
