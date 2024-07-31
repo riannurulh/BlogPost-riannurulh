@@ -129,12 +129,14 @@ function HomePage() {
       <Navbar />
 
       {/* bagian card */}
-      {isDetail && <DetailPage seeDetail={seeDetail} hideDetail={hideDetail}/>}
-      <div className="mt-5 max-w-screen-xl flex gap-4 flex-wrap items-center justify-center mx-auto p-4">
-        {post.map((item) => {
-          return <Card key={item.id} item={item} getDetail={getDetail}/>;
-        })}
-      </div>
+      {isDetail && <DetailPage seeDetail={seeDetail} hideDetail={hideDetail} />}
+      {!isDetail && (
+        <div className="mt-5 min-h-max max-w-screen-xl flex  items-stretch gap-4 flex-wrap justify-center mx-auto p-4">
+          {post.map((item) => {
+            return <Card key={item.id} item={item} getDetail={getDetail} />;
+          })}
+        </div>
+      )}
     </div>
   );
 }
