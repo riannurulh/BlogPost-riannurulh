@@ -1,8 +1,10 @@
+import { Link, Navigate } from "react-router-dom";
+
 function Card(props) {
   let { item, getDetail } = props;
 
   function HandleClick() {
-    getDetail(item);
+    Navigate('/pub/post')
   }
   return (
     // <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -67,18 +69,18 @@ function Card(props) {
       </div>
 
       <div className="basis-1/4 flex flex-col justify-between px-6">
-        <p className="text-sm text-gray-600 leading-relaxed">
+        <p className="text-sm text-gray-600 leading-relaxed truncate">
           {item.content}
         </p>
 
         <div className="mt-8 flex items-center justify-end flex-wrap gap-4">
-          <button
+          <Link
+          to={`/pub/posts/${item.id}`}
             type="button"
             className="px-5 py-2.5 rounded-lg text-white text-sm tracking-wider bg-blue-600 hover:bg-blue-700 outline-none"
-            onClick={HandleClick}
           >
-            Order now
-          </button>
+            See Detail
+          </Link>
         </div>
       </div>
     </div>

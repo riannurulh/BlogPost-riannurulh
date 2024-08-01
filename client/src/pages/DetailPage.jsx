@@ -1,8 +1,12 @@
-function DetailPage(props) {
-  const { seeDetail,hideDetail } = props;
-  function handleClick() {
-    hideDetail()
-  }
+import { useParams } from "react-router-dom";
+
+function DetailPage() {
+  // const { seeDetail,hideDetail } = props;
+  // function handleClick() {
+  //   hideDetail()
+  // }
+  const {id} = useParams()
+  console.log(id);
   return (
     <div>
       <div className="max-w-3xl my-4 px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto bg-white border border-gray-200 rounded-lg shadow  dark:border-gray-700">
@@ -31,7 +35,7 @@ function DetailPage(props) {
         <button
           type="button"
           className=" py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 active:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:hover:bg-red-900 dark:focus:bg-red-900 dark:active:bg-red-900"
-          onClick={handleClick}
+          // onClick={handleClick}
         >
           Hide Details
         </button>
