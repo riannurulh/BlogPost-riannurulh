@@ -1,79 +1,47 @@
-import { useEffect, useState } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
-import PostRequest from "../helpers/PostRequest";
+import { Link } from "react-router-dom";
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showError, setShowError] = useState("");
-const navigate = useNavigate()
-  const login = async (e) => {
-    e.preventDefault();
-    const dataBody = { email, password };
-    try {
-      let { data } = await PostRequest({
-        url: "/apis/login",
-        method: "POST",
-        data: dataBody,
-      });
-      localStorage.setItem('access_token',data.data.access_token)
-      console.log(data,'sukses');
-      navigate('/')
-      // redirect('/')
-    } catch (error) {
-      // if (error.response.data.error === "Invalid credentials") {
-      //   setShowError("Wrong Email/Password");
-      // } else {
-      //   setShowError(error.response.data.error);
-      // }
-    }
-  };
-  // useEffect(() => {
-  //   console.log(email);
-  //   login();
-  // }, []);
+function Register() {
   return (
-    <form onSubmit={login}>
+    <form>
       <div className="mb-8">
-        <h3 className="text-gray-800 text-3xl font-extrabold">Sign in</h3>
+        <h3 className="text-gray-800 text-3xl font-extrabold">Register</h3>
         <p className="text-sm mt-4 text-gray-800">
-          Dont have an account{" "}
+          Already have an account{" "}
           <Link
-            to="/register"
+            to="/"
             href="javascript:void(0);"
             className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
           >
-            Register here
+            Login here
           </Link>
         </p>
-        {showError && (
-          <div
-            className="bg-white shadow-[0_3px_10px_-3px_rgba(6,81,237,0.3)] text-gray-800 flex items-center w-max max-w-sm p-4 rounded-md"
-            role="alert"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[18px] shrink-0 fill-red-500 inline mr-3"
-              viewBox="0 0 32 32"
-            >
-              <path
-                d="M16 1a15 15 0 1 0 15 15A15 15 0 0 0 16 1zm6.36 20L21 22.36l-5-4.95-4.95 4.95L9.64 21l4.95-5-4.95-4.95 1.41-1.41L16 14.59l5-4.95 1.41 1.41-5 4.95z"
-                data-original="#ea2d3f"
-              />
-            </svg>
-            <span className="text-sm font-semibold tracking-wide">{showError}</span>
-          </div>
-        )}
       </div>
 
       <div>
+        <label className="text-gray-800 text-[15px] mb-2 block">Username</label>
+        <div className="relative flex items-center">
+          <input
+            name="username"
+            type="text"
+            required
+            className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
+            placeholder="Enter username"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#bbb"
+            viewBox="0 -960 960 960"
+            className="w-[18px] h-[18px] absolute right-4"
+          >
+            <path d="M200-246q54-53 125.5-83.5T480-360q83 0 154.5 30.5T760-246v-514H200v514Zm280-194q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm69-80h422q-44-39-99.5-59.5T480-280q-56 0-112.5 20.5T269-200Zm211-320q-25 0-42.5-17.5T420-580q0-25 17.5-42.5T480-640q25 0 42.5 17.5T540-580q0 25-17.5 42.5T480-520Zm0 17Z" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="mt-4">
         <label className="text-gray-800 text-[15px] mb-2 block">Email</label>
         <div className="relative flex items-center">
           <input
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
             name="email"
             type="text"
             required
@@ -113,10 +81,6 @@ const navigate = useNavigate()
         <label className="text-gray-800 text-[15px] mb-2 block">Password</label>
         <div className="relative flex items-center">
           <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
             name="password"
             type="password"
             required
@@ -137,15 +101,60 @@ const navigate = useNavigate()
           </svg>
         </div>
       </div>
+
+      <div className="mt-4">
+        <label className="text-gray-800 text-[15px] mb-2 block">
+          Phone Number
+        </label>
+        <div className="relative flex items-center">
+          <input
+            name="phone number"
+            type="text"
+            required
+            className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
+            placeholder="Enter phone number"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="#bbb"
+            className="w-[18px] h-[18px] absolute right-4"
+          >
+            <path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <label className="text-gray-800 text-[15px] mb-2 block">Address</label>
+        <div className="relative flex items-center">
+          <input
+            name="address"
+            type="text"
+            required
+            className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
+            placeholder="Enter address"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="#bbb"
+            className="w-[18px] h-[18px] absolute right-4"
+          >
+            <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+          </svg>
+        </div>
+      </div>
+
       <div className="mt-8">
         <button
-          type="submit"
+          type="button"
           className="w-full py-3 px-6 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
         >
-          Sign in
+          Register
         </button>
       </div>
     </form>
   );
 }
-export default Login;
+export default Register;
