@@ -49,7 +49,13 @@ function DetailPage() {
         </div>
         <div className="flex justify-center mt-4">
 
-        
+        <Link
+        to='/pub/posts'
+          type="button"
+          className=" py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 active:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:hover:bg-red-900 dark:focus:bg-red-900 dark:active:bg-red-900"
+        >
+          Back to list
+        </Link>
         </div>
       </div>
     </div>
