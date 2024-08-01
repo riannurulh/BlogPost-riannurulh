@@ -46,38 +46,14 @@ function Navbar(props) {
                 />
               </a>
             </li>
-            <li className="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                className="text-[#007bff] hover:text-[#007bff] text-[15px] block font-semibold"
-              >
-                New
-              </a>
-            </li>
-            <li className="max-lg:border-b max-lg:py-3 px-3">
+            <button className="max-lg:border-b max-lg:py-3 px-3">
               <a
                 href="javascript:void(0)"
                 className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold"
               >
-                Men
+                Home
               </a>
-            </li>
-            <li className="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold"
-              >
-                Women
-              </a>
-            </li>
-            <li className="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold"
-              >
-                Kids
-              </a>
-            </li>
+            </button>
           </ul>
         </div>
 

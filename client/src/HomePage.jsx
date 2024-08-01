@@ -21,7 +21,7 @@ function HomePage() {
         url: `/apis/pub/blog/posts?page=${currentPage}`,
         method: "GET",
       });
-      console.log(data.data.query.length, "awokawok");
+      // console.log(data.data.query.length, "awokawok");
       setPost(data.data.query);
       setTotalPage(data.data.pagination.totalPage)
     } catch (error) {
@@ -36,6 +36,7 @@ function HomePage() {
         method: "GET",
       });
       setPost(data.data.query);
+      setTotalPage(data.data.pagination.totalPage)
     } catch (error) {
       console.log(error);
     }
