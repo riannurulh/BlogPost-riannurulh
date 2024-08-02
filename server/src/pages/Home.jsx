@@ -4,6 +4,7 @@ import PostRequest from "../helpers/PostRequest";
 
 const Home = ()=>{
 const [post,setPost] = useState([])
+const [deletePost,setDeletePost] = useState()
     const getPosts = async ()=>{
         try {
             let {data} = await PostRequest({
@@ -17,12 +18,28 @@ const [post,setPost] = useState([])
             console.log(error);
         }
     }
+    const delPost = async()=>{
+
+        try {
+            console.log(deletePost);
+            await PostRequest({
+                url:`/apis/blog/posts/${deletePost}`,
+                method: 'DELETE',
+                headers: {'Authorization':`Bearer ${localStorage.getItem('access_token')}`}
+            })
+            getPosts()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
     useEffect(()=>{getPosts()},[])
+    useEffect(()=>{delPost()},[deletePost])
 return(
     <div className="  p-4">
     <div className="flex flex-wrap gap-4">
     {post.map((item)=>{
-        return <Card key={item.id} item={item}/>
+        return <Card key={item.id} item={item} delPost={delPost} setDeletePost={setDeletePost}/>
 
     })}
 
