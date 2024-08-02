@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Sidebar from "./components/Sidebar";
 import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/Edit";
 
   const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ import CreatePost from "./pages/CreatePost";
             {
               path:'/create-post',
               element:<CreatePost/>
+            },
+            {
+              path:'/post/edit/:id',
+              element:<EditPost/>
             }
           ]
         },

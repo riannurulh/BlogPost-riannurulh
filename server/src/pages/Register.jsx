@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Register() {
+
   return (
     <form>
       <div className="mb-8">
@@ -21,6 +22,8 @@ function Register() {
         <label className="text-gray-800 text-[15px] mb-2 block">Username</label>
         <div className="relative flex items-center">
           <input
+          value={username}
+          onChange={(e)=>{setUsername(e.target.value)}}
             name="username"
             type="text"
             required
@@ -42,8 +45,10 @@ function Register() {
         <label className="text-gray-800 text-[15px] mb-2 block">Email</label>
         <div className="relative flex items-center">
           <input
+          value={password}
+          onChange={(e)=>{setPassword(e.target.value)}}
             name="email"
-            type="text"
+            type="email"
             required
             className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
             placeholder="Enter email"
@@ -108,6 +113,8 @@ function Register() {
         </label>
         <div className="relative flex items-center">
           <input
+          value={phoneNumber}
+          onChange={(e)=>{setPhoneNumber(e.target.value)}}
             name="phone number"
             type="text"
             required

@@ -1,23 +1,44 @@
 import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import PostRequest from "../helpers/PostRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 
-const CreatePost = () => {
+const EditPost = () => {
+  const { id } = useParams();
+  const [post, setPost] = useState({});
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [categoryList, setCategoryList] = useState([]);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const getPostData = async () => {
+    try {
+      let { data } = await PostRequest({
+        url: `/apis/blog/posts/${id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setPost(data.data);
+    setTitle(data.data.title)
+    setContent(data.data.content)
+    setImgUrl(data.data.imgUrl)
+    setCategoryId(data.data.categoryId)
+      console.log(data.data,'aaaaaaaaaaaa');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const getCategory = async () => {
     try {
       let { data } = await PostRequest({
         url: "/apis/blog/categories",
         method: "GET",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
       setCategoryList(data.data);
@@ -26,41 +47,45 @@ const CreatePost = () => {
       console.log(error);
     }
   };
-  const addPost = async (e) => {
-    e.preventDefault()
-    const dataBody = {title,content,imgUrl,categoryId}
+  const editPost = async (e) => {
+    e.preventDefault();
+    const dataBody = { title, content, imgUrl, categoryId };
     try {
       await PostRequest({
-        url: "/apis/blog/posts",
-        method: "POST",
+        url: `/apis/blog/posts/${id}`,
+        method: "PUT",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
-        data: dataBody
+        data: dataBody,
       });
-      navigate('/')
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
+    getPostData();
+    // console.log(post);
+  }, []);
+  useEffect(() => {
     getCategory();
-    // console.log(categoryList);
+    console.log(categoryList);
   }, [setCategoryList]);
   return (
-    <form onSubmit={addPost}>
+    <form onSubmit={editPost}>
       <div className="mb-8">
-        <h3 className="text-gray-800 text-3xl font-extrabold">
-          Create New Post
-        </h3>
+        <h3 className="text-gray-800 text-3xl font-extrabold">Edit Post</h3>
       </div>
 
       <div>
         <label className="text-gray-800 text-[15px] mb-2 block">Title</label>
         <div className="relative flex items-center">
           <input
-          value={title}
-          onChange={(e)=>{setTitle(e.target.value)}}
+            defaultValue={post.title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
             name="title"
             type="text"
             required
@@ -82,8 +107,10 @@ const CreatePost = () => {
         <label className="text-gray-800 text-[15px] mb-2 block">Content</label>
         <div className="relative flex items-center">
           <input
-          value={content}
-          onChange={(e)=>{setContent(e.target.value)}}
+            defaultValue={post.content}
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
             name="content"
             type="text"
             required
@@ -125,8 +152,10 @@ const CreatePost = () => {
         </label>
         <div className="relative flex items-center">
           <input
-          value={imgUrl}
-          onChange={(e)=>{setImgUrl(e.target.value)}}
+            defaultValue={post.imgUrl}
+            onChange={(e) => {
+              setImgUrl(e.target.value);
+            }}
             name="imgUrl"
             type="text"
             required
@@ -149,39 +178,36 @@ const CreatePost = () => {
       </div>
 
       <div className="mt-4">
-        <label htmlFor="cars">Choose a car:</label>
+        <label htmlFor="cars">Choose Category:</label>
 
         <select
           name="categoryId"
-          value={categoryId}
-          onChange={(e)=>{setCategoryId(e.target.value)}}
+          defaultValue={post.categoryId}
+          onChange={(e) => {
+            setCategoryId(e.target.value);
+          }}
           id="cars"
           className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
         >
           {categoryList.map((item) => {
-            return(
-
-            <option
-            key={categoryId}
-            name="categoryId"
-              value={item.id}
-              
-              className="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer"
-            >
-              {item.name}
-            </option>
-            )
+            return (
+              <option
+                key={categoryId}
+                value={item.id}
+                selected={categoryId === item.id}
+                className="py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer"
+              >
+                {item.name}
+              </option>
+            );
           })}
-          {/* <option value="saab" className='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Saab</option>
-  <option value="mercedes" className='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Mercedes</option>
-  <option value="audi" className='py-2.5 px-5 hover:bg-blue-50 text-black text-sm cursor-pointer'>Audi</option> */}
         </select>
       </div>
 
       <div className="mt-8">
-        <Button type='submit' name='Create post'/>
+        <Button type={'submit'} name={'Edit Post'}/>
       </div>
     </form>
   );
 };
-export default CreatePost;
+export default EditPost;
