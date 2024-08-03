@@ -23,7 +23,11 @@ const CreatePost = () => {
       });
       setCategoryList(data.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   const addPost = async (e) => {

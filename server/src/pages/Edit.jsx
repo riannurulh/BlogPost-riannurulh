@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PostRequest from "../helpers/PostRequest";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
+import Swal from "sweetalert2";
 
 const EditPost = () => {
   const { id } = useParams();
@@ -23,13 +24,17 @@ const EditPost = () => {
         },
       });
       setPost(data.data);
-    setTitle(data.data.title)
-    setContent(data.data.content)
-    setImgUrl(data.data.imgUrl)
-    setCategoryId(data.data.categoryId)
-      console.log(data.data,'aaaaaaaaaaaa');
+      setTitle(data.data.title);
+      setContent(data.data.content);
+      setImgUrl(data.data.imgUrl);
+      setCategoryId(data.data.categoryId);
+      console.log(data.data, "aaaaaaaaaaaa");
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   const getCategory = async () => {
@@ -61,7 +66,11 @@ const EditPost = () => {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   useEffect(() => {
@@ -205,7 +214,7 @@ const EditPost = () => {
       </div>
 
       <div className="mt-8">
-        <Button type={'submit'} name={'Edit Post'}/>
+        <Button type={"submit"} name={"Edit Post"} />
       </div>
     </form>
   );

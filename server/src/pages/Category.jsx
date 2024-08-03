@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import PostRequest from "../helpers/PostRequest";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -18,7 +19,11 @@ const Home = () => {
       console.log(data);
       setCategoryList(data.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
 

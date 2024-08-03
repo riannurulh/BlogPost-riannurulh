@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import PostRequest from "../helpers/PostRequest";
+import Swal from "sweetalert2";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,11 +22,11 @@ const navigate = useNavigate()
       navigate('/')
       // redirect('/')
     } catch (error) {
-      if (error.response.data.error === "Invalid credentials") {
-        setShowError("Wrong Email/Password");
-      } else {
-        setShowError(error.response.data.error);
-      }
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   // useEffect(() => {

@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 
 const Home = () => {
   const [post, setPost] = useState([]);
-  const [deletePost, setDeletePost] = useState();
-  const [categoryList, setCategoryList] = useState([]);
-  const [categoryName, setCategoryName] = useState("");
+  // const [deletePost, setDeletePost] = useState();
+  // const [categoryList, setCategoryList] = useState([]);
+  // const [categoryName, setCategoryName] = useState("");
   const getPosts = async () => {
     try {
       let { data } = await PostRequest({
@@ -21,7 +21,11 @@ const Home = () => {
       setPost(data.data);
       console.log(data.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   const delPost = async (id) => {

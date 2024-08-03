@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PostRequest from "../helpers/PostRequest";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PatchImage = () => {
   const { id } = useParams();
@@ -28,7 +29,11 @@ const PatchImage = () => {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
+        Swal.fire({
+            title: "Error",
+            text: `${error.response.data.error}`,
+            icon: "error",
+          });
     }
   };
 
