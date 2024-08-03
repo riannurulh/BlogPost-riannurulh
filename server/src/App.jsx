@@ -13,6 +13,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/Edit";
 import PatchImage from "./pages/PatchImage";
 import Category from "./pages/Category";
+import NotFound from "./pages/NotFound";
 
   const router = createBrowserRouter([
     {
@@ -79,6 +80,10 @@ import Category from "./pages/Category";
           element: <Login/>
         },
       ]
+    },
+    {
+      path:'*',
+      element: <NotFound/>
     },
     
   ]);

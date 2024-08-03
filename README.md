@@ -2,3 +2,26 @@
 # P2-Challenge-2 (Client Side)
 
 > Tuliskan API Docs kamu di sini
+
+# P2-Challenge-2 (Client Side)
+
+> Link Deployment
+untuk CMS
+<https://riannurul-h8-gc2-server.web.app/>
+untuk Public
+<https://riannurul-h8-gc2.web.app/pub/posts/>
+
+Pointing ke Domain Pribadi:
+Belum bisa.
+
+## User Login Info
+
+> `Admin`
+
+- Email: <admin@mail.com>
+- Password: 1234567
+
+> `Staff`
+
+- Email: <staff@mail.com>
+- Password: 1234567

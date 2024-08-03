@@ -81,7 +81,7 @@ const Home = () => {
           </tr>
         </thead>
 
-        <tbody className="whitespace-nowrap">
+        <tbody className="whitespace-nowrap h-max-15">
           {post.map((item, idx) => {
             return (
               <tr key={item.id} className="hover:bg-gray-50">

@@ -65,7 +65,7 @@ function Card(props) {
       </div>
 
       <div className="basis-1/2 ">
-        <img src={item.imgUrl} className="w-full my-6" />
+        <img src={item.imgUrl} className="w-20 h-auto my-6" />
       </div>
 
       <div className="basis-1/4 flex flex-col justify-between px-6">
