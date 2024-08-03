@@ -91,7 +91,7 @@ const Home = () => {
                   {item.content}
                 </td>
                 <td className="p-4 text-[15px] text-gray-800 flex flex-wrap">
-                  <img src={item.imgUrl} alt="" />
+                  <img src={item.imgUrl} alt="" className="w-20 h-auto" />
                   <Link
                     to={`/post/patch-img/${item.id}`}
                     className="underline text-blue-300"
