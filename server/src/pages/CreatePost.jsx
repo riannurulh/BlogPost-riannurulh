@@ -21,7 +21,6 @@ const CreatePost = () => {
         },
       });
       setCategoryList(data.data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +44,6 @@ const CreatePost = () => {
   };
   useEffect(() => {
     getCategory();
-    // console.log(categoryList);
   }, [setCategoryList]);
   return (
     <form onSubmit={addPost}>

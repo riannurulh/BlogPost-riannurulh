@@ -1,9 +1,33 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import PostRequest from "../helpers/PostRequest";
 
 function Register() {
+const [username, setUsername] = useState('')
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+const [phoneNumber, setPhoneNumber] = useState('')
+const [address, setAddress] = useState('')
 
+const navigate = useNavigate()
+
+const register = async(e)=>{
+  e.preventDefault()
+  const bodyData = {username,email,password,phoneNumber,address}
+  try {
+    await PostRequest({
+      url:`/apis/add-user`,
+      method:'POST',
+      headers:{Authorization: `Bearer ${localStorage.getItem('access_token')}`},
+      data:bodyData
+    })
+    navigate('/')
+  } catch (error) {
+    console.log(error);
+  }
+}
   return (
-    <form>
+    <form onSubmit={register}>
       <div className="mb-8">
         <h3 className="text-gray-800 text-3xl font-extrabold">Register</h3>
         <p className="text-sm mt-4 text-gray-800">
@@ -115,7 +139,7 @@ function Register() {
           <input
           value={phoneNumber}
           onChange={(e)=>{setPhoneNumber(e.target.value)}}
-            name="phone number"
+            name="phoneNumber"
             type="text"
             required
             className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
@@ -136,6 +160,8 @@ function Register() {
         <label className="text-gray-800 text-[15px] mb-2 block">Address</label>
         <div className="relative flex items-center">
           <input
+          value={address}
+          onChange={(e)=>{setAddress(e.target.value)}}
             name="address"
             type="text"
             required
@@ -155,7 +181,7 @@ function Register() {
 
       <div className="mt-8">
         <button
-          type="button"
+          type="submit"
           className="w-full py-3 px-6 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
         >
           Register

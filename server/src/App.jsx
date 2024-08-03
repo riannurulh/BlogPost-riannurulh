@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Sidebar from "./components/Sidebar";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/Edit";
+import PatchImage from "./pages/PatchImage";
 
   const router = createBrowserRouter([
     {
@@ -38,10 +39,26 @@ import EditPost from "./pages/Edit";
             {
               path:'/post/edit/:id',
               element:<EditPost/>
-            }
+            },
+            {
+              path:'/register',
+              element: <Register/>
+            },
           ]
         },
       ]
+    },
+    {
+      path:'/post/patch-img/:id',
+      element: <PatchImage/>,
+      loader: () => {
+        console.log(localStorage.getItem('access_token'));
+        if (!localStorage.getItem('access_token')) {
+          return redirect('/login')
+        }
+  
+        return null;
+      },
     },
     {
       element: <LoginRegisterTemplate/>,
@@ -57,10 +74,6 @@ import EditPost from "./pages/Edit";
         {
           path:'/login',
           element: <Login/>
-        },
-        {
-          path:'/register',
-          element: <Register/>
         },
       ]
     },

@@ -97,8 +97,12 @@ const Home = () => {
                 <td className="p-4 text-[15px] text-gray-800 truncate">
                   {item.content}
                 </td>
-                <td className="p-4 text-[15px] text-gray-800">
+                <td className="p-4 text-[15px] text-gray-800 flex flex-wrap">
                   <img src={item.imgUrl} alt="" />
+                  <Link to={`/post/patch-img/${item.id}`}
+                  className="underline text-blue-300">
+                  change img
+                  </Link>
                 </td>
                 <td className="p-4 text-[15px] text-gray-800">
                   {item.User.username}
