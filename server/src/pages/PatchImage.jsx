@@ -7,14 +7,11 @@ const PatchImage = () => {
   const [fileName, setFileName] = useState("");
   const [fileSize, setFileSize] = useState("");
   const [newFile, setNewFile] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
 
   const navigate = useNavigate();
 
   const uploadImg = async (e) => {
     e.preventDefault();
-
-    setIsUploading(true);
 
     const formData = new FormData();
     formData.append("file", newFile);
