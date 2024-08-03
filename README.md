@@ -69,20 +69,11 @@ Belum bisa.
     /
     ```
 
-    
-- Detail Page:
-
-
-    ```
-    /:id
-    ```
-
-
 - Category List:
 
 
     ```
-    /categories
+    /category
     ```
 
 
@@ -90,7 +81,7 @@ Belum bisa.
 
 
     ```
-    /post-create
+    /create-post
     ```
 
 
@@ -98,7 +89,7 @@ Belum bisa.
 
 
     ```
-    /post-create/:id
+    /post/edit/:id
     ```
 
 
@@ -106,5 +97,5 @@ Belum bisa.
 
 
     ```
-    /image-edit/:id
+    /post/patch-img/:id
     ```
