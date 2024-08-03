@@ -6,11 +6,7 @@ function Sidebar() {
       <header className="flex shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[70px] tracking-wide relative z-50">
         <div className="flex flex-wrap items-center justify-between gap-5 w-full">
           <a href="">
-            <img
-              src="../asset/logo.png"
-              alt="logo"
-              className="w-36"
-            />
+            <img src="../asset/logo.png" alt="logo" className="w-36" />
           </a>
 
           <div
@@ -105,6 +101,23 @@ function Sidebar() {
               className="px-5 py-2.5 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600"
             >
               Add-user
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16px"
+                fill="currentColor"
+                className="ml-2 inline"
+                viewBox="0 -960 960 960"
+              >
+                <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+              </svg>
+            </Link>
+            <Link
+              to="/"
+              onClick={()=>{localStorage.clear()}}
+              type="button"
+              className="px-5 py-2.5 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600"
+            >
+              Log-out
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16px"

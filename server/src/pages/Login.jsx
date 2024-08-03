@@ -21,11 +21,11 @@ const navigate = useNavigate()
       navigate('/')
       // redirect('/')
     } catch (error) {
-      // if (error.response.data.error === "Invalid credentials") {
-      //   setShowError("Wrong Email/Password");
-      // } else {
-      //   setShowError(error.response.data.error);
-      // }
+      if (error.response.data.error === "Invalid credentials") {
+        setShowError("Wrong Email/Password");
+      } else {
+        setShowError(error.response.data.error);
+      }
     }
   };
   // useEffect(() => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PostRequest from "../helpers/PostRequest";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import Swal from "sweetalert2";
 
 const CreatePost = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -39,7 +40,11 @@ const CreatePost = () => {
       });
       navigate('/')
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
+      });
     }
   };
   useEffect(() => {
@@ -147,7 +152,7 @@ const CreatePost = () => {
       </div>
 
       <div className="mt-4">
-        <label htmlFor="cars">Choose a car:</label>
+        <label htmlFor="cars">select category:</label>
 
         <select
           name="categoryId"

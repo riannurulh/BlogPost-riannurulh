@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import PostRequest from "../helpers/PostRequest";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [post, setPost] = useState([]);
@@ -23,11 +24,10 @@ const Home = () => {
       console.log(error);
     }
   };
-  const delPost = async () => {
+  const delPost = async (id) => {
     try {
-      console.log(deletePost);
       await PostRequest({
-        url: `/apis/blog/posts/${deletePost}`,
+        url: `/apis/blog/posts/${id}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -35,30 +35,19 @@ const Home = () => {
       });
       getPosts();
     } catch (error) {
-      console.log(error);
-    }
-  };
-  const getCategory = async () => {
-    try {
-      let { data } = await PostRequest({
-        url: "/apis/blog/categories",
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.error}`,
+        icon: "error",
       });
-      setCategoryList(data.data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
     }
   };
   useEffect(() => {
     getPosts();
   }, []);
-  useEffect(() => {
-    delPost();
-  }, [deletePost]);
+  // useEffect(() => {
+  //   delPost();
+  // }, [deletePost]);
   return (
     <div className="font-sans overflow-x-auto">
       <table className="min-w-full bg-white">
@@ -99,9 +88,11 @@ const Home = () => {
                 </td>
                 <td className="p-4 text-[15px] text-gray-800 flex flex-wrap">
                   <img src={item.imgUrl} alt="" />
-                  <Link to={`/post/patch-img/${item.id}`}
-                  className="underline text-blue-300">
-                  change img
+                  <Link
+                    to={`/post/patch-img/${item.id}`}
+                    className="underline text-blue-300"
+                  >
+                    change img
                   </Link>
                 </td>
                 <td className="p-4 text-[15px] text-gray-800">
@@ -131,7 +122,13 @@ const Home = () => {
                       />
                     </svg>
                   </Link>
-                  <button onClick={delPost} className="mr-4" title="Delete">
+                  <button
+                    onClick={() => {
+                      delPost(item.id);
+                    }}
+                    className="mr-4"
+                    title="Delete"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 fill-red-500 hover:fill-red-700"

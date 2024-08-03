@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PostRequest from "../helpers/PostRequest";
+import Swal from "sweetalert2";
 
 function Register() {
 const [username, setUsername] = useState('')
@@ -23,23 +24,18 @@ const register = async(e)=>{
     })
     navigate('/')
   } catch (error) {
-    console.log(error);
+    Swal.fire({
+      title: "Error",
+      text: `${error.response.data.error}`,
+      icon: "error",
+    });
   }
 }
   return (
     <form onSubmit={register}>
       <div className="mb-8">
         <h3 className="text-gray-800 text-3xl font-extrabold">Register</h3>
-        <p className="text-sm mt-4 text-gray-800">
-          Already have an account{" "}
-          <Link
-            to="/"
-            href="javascript:void(0);"
-            className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-          >
-            Login here
-          </Link>
-        </p>
+        
       </div>
 
       <div>
@@ -69,8 +65,8 @@ const register = async(e)=>{
         <label className="text-gray-800 text-[15px] mb-2 block">Email</label>
         <div className="relative flex items-center">
           <input
-          value={password}
-          onChange={(e)=>{setPassword(e.target.value)}}
+          value={email}
+          onChange={(e)=>{setEmail(e.target.value)}}
             name="email"
             type="email"
             required
@@ -110,8 +106,8 @@ const register = async(e)=>{
         <label className="text-gray-800 text-[15px] mb-2 block">Password</label>
         <div className="relative flex items-center">
           <input
-            name="password"
-            type="password"
+          value={password}
+          onChange={(e)=>{setPassword(e.target.value)}}
             required
             className="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
             placeholder="Enter password"
