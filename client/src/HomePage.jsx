@@ -12,6 +12,7 @@ import Category from "./components/Category";
 function HomePage() {
   const [post, setPost] = useState([]);
   const [category, setCategory] = useState([]);
+  const [sort, setSort] = useState('ASC');
   const [selectCategory, setSelectCategory] = useState("");
   const [searchPost, setSearchPost] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +21,7 @@ function HomePage() {
   const ReadAllPubPost = async () => {
     try {
       let { data } = await PostRequest({
-        url: `/apis/pub/blog/posts?page=${currentPage}&q=${searchPost}&i=${selectCategory}`,
+        url: `/apis/pub/blog/posts?page=${currentPage}&q=${searchPost}&i=${selectCategory}&sort=${sort}`,
         method: "GET",
       });
       console.log(data.data.query.length, "awokawok");
@@ -80,6 +81,10 @@ function HomePage() {
     ReadAllPubPost();
     ReadAllCategory();
   }, [selectCategory]);
+  useEffect(() => {
+    ReadAllPubPost();
+    ReadAllCategory();
+  }, [sort]);
   return (
     <div className="">
       <div className="flex">
@@ -93,13 +98,14 @@ function HomePage() {
           <span className="px-5 py-2.5">Sort : </span>
           <button
             type="button"
-            onClick={}
+            onClick={()=>{setSort('DESC')}}
             className="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border visited:bg-blue-700 visited:text-white border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300"
           >
             newest
           </button>
           <button
             type="button"
+            onClick={()=>{setSort('ASC')}}
             className="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border visited:bg-blue-700 visited:text-white border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300"
           >
             lastest

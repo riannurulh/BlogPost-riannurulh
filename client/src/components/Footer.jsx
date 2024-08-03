@@ -3,13 +3,13 @@ function Footer() {
     <footer className="bg-gray-900 text-gray-300 py-6 px-16 font-sans tracking-wide">
       <div className="flex justify-between items-center max-lg:flex-col text-center flex-wrap gap-4">
         <p className="text-[15px] leading-loose">
-          © 2023
+          © 2024
           <a
             href="https://readymadeui.com/"
             target="_blank"
             className="hover:underline mx-1"
           >
-            ReadymadeUI
+            Rian Nurul
           </a>
           All Rights Reserved.
         </p>
