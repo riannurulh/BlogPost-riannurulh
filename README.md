@@ -25,3 +25,86 @@ Belum bisa.
 
 - Email: <staff@mail.com>
 - Password: 1234567
+
+
+## Endpoint List
+
+
+### Public
+- Homepage:
+
+
+    ```
+    /pub/posts
+    ```
+
+
+- Detail Page:
+
+
+    ```
+    /pub/posts/:id
+    ```
+
+### CMS
+- Login:
+
+
+    ```
+    /login
+    ```
+
+# Authorization required
+
+- Register:
+
+    ```
+    /register
+    ```
+
+- Homepage:
+
+
+    ```
+    /
+    ```
+
+    
+- Detail Page:
+
+
+    ```
+    /:id
+    ```
+
+
+- Category List:
+
+
+    ```
+    /categories
+    ```
+
+
+- Create Post:
+
+
+    ```
+    /post-create
+    ```
+
+
+- Edit Post:
+
+
+    ```
+    /post-create/:id
+    ```
+
+
+- Edit Image (Patch):
+
+
+    ```
+    /image-edit/:id
+    ```
