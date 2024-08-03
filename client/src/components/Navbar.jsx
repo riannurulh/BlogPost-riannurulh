@@ -1,3 +1,5 @@
+import{Link} from 'react-router-dom'
+
 function Navbar(props) {
   console.log(props,'iniini');
   const { ReadSearchPubPost, setSearchPost, searchPost } = props;
@@ -47,12 +49,12 @@ function Navbar(props) {
               </a>
             </li>
             <button className="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
+              <Link
+                to='/pub/posts'
                 className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold"
               >
                 Home
-              </a>
+              </Link>
             </button>
           </ul>
         </div>
@@ -60,14 +62,14 @@ function Navbar(props) {
         <div className="flex gap-x-6 gap-y-4 ml-auto">
 
           <div className="flex items-center space-x-2">
-            <button className="px-5 py-2 text-sm rounded-full text-[#007bff] border-2 border-[#007bff] bg-white hover:bg-[#004bff] hover:text-white">
+            {/* <button className="px-5 py-2 text-sm rounded-full text-[#007bff] border-2 border-[#007bff] bg-white hover:bg-[#004bff] hover:text-white">
               Sign Up
             </button>
             <button className="px-5 py-2 text-sm rounded-full text-white border-2 border-[#007bff] bg-[#007bff] hover:bg-[#004bff]">
               Sign In
-            </button>
+            </button> */}
 
-            <button id="toggleOpen" className="lg:hidden">
+            {/* <button id="toggleOpen" className="lg:hidden">
               <svg
                 className="w-7 h-7"
                 fill="#333"
@@ -80,7 +82,7 @@ function Navbar(props) {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

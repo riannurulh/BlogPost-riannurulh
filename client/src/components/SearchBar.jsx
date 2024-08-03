@@ -1,8 +1,8 @@
 function SearchBar(props) {
-  const { ReadSearchPubPost, setSearchPost, searchPost } = props;
+  const { ReadAllPubPost, setSearchPost, searchPost } = props;
   return (
     <form
-      onSubmit={ReadSearchPubPost}
+      onSubmit={ReadAllPubPost}
       className="flex mt-9 px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]"
     >
       <svg
