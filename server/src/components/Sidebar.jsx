@@ -112,7 +112,7 @@ function Sidebar() {
               </svg>
             </Link>
             <Link
-              to="/"
+              to="/login"
               onClick={() => {
                 localStorage.clear();
               }}

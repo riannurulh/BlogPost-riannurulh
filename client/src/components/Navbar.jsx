@@ -8,7 +8,7 @@ function Navbar(props) {
       <div className="flex flex-wrap items-center lg:gap-y-2 gap-4 w-full">
         <a href="">
           <img
-            src='../asset/logo.png'
+            src='../assets/logo.png'
             alt="logo"
             className="w-36"
           />
